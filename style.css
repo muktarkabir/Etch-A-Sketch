@@ -7,7 +7,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: burlywood;
+    background-color: rgb(233, 23, 23);
 }
 
 #controls-container{
@@ -31,5 +31,7 @@ body{
     
     flex-wrap: wrap;
 }
-
+.change{
+    background-color: black;
+}
 
