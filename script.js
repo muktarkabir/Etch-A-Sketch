@@ -6,11 +6,25 @@ function changeBgtoRed(e) {
     e.target.classList.add('change-to-red');
 }
 
-let grid;
+let grid,theInput;
 grid = 16;
+function userInput(theInput) {
+    theInput = parseInt(prompt('Enter a number between 1 and 100:'));
+    let freshGrid = theInput;
+    if (freshGrid < 1 || freshGrid > 100) {
+        alert('Invalid Input'); return userInput(theInput);
+    }
+    grid = freshGrid;
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild)
+    }
+    theGrid(grid);
+} 
 
+newGrid.addEventListener('click',userInput);
 
-for (let i = 0; i < grid**2; i++) {
+function theGrid(grid) {
+    for (let i = 0; i < grid**2; i++) {
         const boxes = document.createElement('div');
         boxes.classList.add(`box-${i+1}`)
         boxes.style.width = `${480/grid}px`;
@@ -21,3 +35,5 @@ for (let i = 0; i < grid**2; i++) {
         boxes.addEventListener('dragover',changeBgtoRed);
         gridContainer.append(boxes);
     }
+}
+theGrid(grid);
