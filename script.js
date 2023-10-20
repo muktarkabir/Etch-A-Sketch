@@ -14,7 +14,7 @@ function userInput(theInput) {
     if (freshGrid >=1 && freshGrid <= 100) {
         grid = freshGrid;
     } else if (freshGrid < 1 || freshGrid > 100) {
-        alert('Invalid Sumayya')
+        alert('Invalid Input')
         return userInput();
     }
 
