@@ -10,11 +10,14 @@ let grid,theInput;
 grid = 16;
 function userInput(theInput) {
     theInput = parseInt(prompt('Enter a number between 1 and 100:'));
-    let freshGrid = theInput;
-    if (freshGrid < 1 || freshGrid > 100) {
-        alert('Invalid Input'); return userInput(theInput);
+    const freshGrid = parseInt(theInput);
+    if (freshGrid >=1 && freshGrid <= 100) {
+        grid = freshGrid;
+    } else if (freshGrid < 1 || freshGrid > 100) {
+        alert('Invalid Sumayya')
+        return userInput();
     }
-    grid = freshGrid;
+
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild)
     }
