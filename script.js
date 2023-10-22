@@ -1,13 +1,25 @@
 const gridContainer = document.getElementById('grid-container');
 const newGrid = document.querySelector('.new-grid');
+const clearCanvas = document.querySelector('.clear');
+const eraser = document.querySelector('.eraser');
 
 let grid,theInput,color;
 grid = 16;
 color = 'black';
+
+
 function changeBg(e) {
     const element = e.target;
     element.style.backgroundColor = color;
 }
+
+//Eraser functionality
+eraser.addEventListener('click',()=>{
+    color = 'white';
+});
+eraser.addEventListener('dragover',()=>{
+    color = 'white';
+});
 
 
 function userInput(theInput) {
