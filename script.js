@@ -1,13 +1,15 @@
 const gridContainer = document.getElementById('grid-container');
 const newGrid = document.querySelector('.new-grid');
 
-
-function changeBgtoRed(e) {
-    e.target.classList.add('change-to-red');
+let grid,theInput,color;
+grid = 16;
+color = 'black';
+function changeBg(e) {
+    const element = e.target;
+    element.style.backgroundColor = color;
 }
 
-let grid,theInput;
-grid = 16;
+
 function userInput(theInput) {
     theInput = parseInt(prompt('Enter a number between 1 and 100:'));
     const freshGrid = parseInt(theInput);
@@ -34,8 +36,8 @@ function theGrid(grid) {
         boxes.style.height = `${480/grid}px`;
         boxes.style.borderBottom = `0.5px solid black`;
         boxes.style.borderRight = `0.5px solid black`;
-        boxes.addEventListener('click',changeBgtoRed);
-        boxes.addEventListener('dragover',changeBgtoRed);
+        boxes.addEventListener('click',changeBg);
+        boxes.addEventListener('dragover',changeBg);
         gridContainer.append(boxes);
     }
 }
