@@ -2,6 +2,7 @@ const gridContainer = document.getElementById('grid-container');
 const newGrid = document.querySelector('.new-grid');
 const clearCanvas = document.querySelector('.clear');
 const eraser = document.querySelector('.eraser');
+const controls = document.getElementById("colour-controls");
 
 let grid,theInput,color;
 grid = 16;
@@ -12,15 +13,6 @@ function changeBg(e) {
     const element = e.target;
     element.style.backgroundColor = color;
 }
-
-//Eraser functionality
-eraser.addEventListener('click',()=>{
-    color = 'white';
-});
-eraser.addEventListener('dragover',()=>{
-    color = 'white';
-});
-
 
 function userInput(theInput) {
     theInput = parseInt(prompt('Enter a number between 1 and 100:'));
@@ -37,6 +29,20 @@ function userInput(theInput) {
     }
     theGrid(grid);
 } 
+
+//Eraser functionality
+eraser.addEventListener('click',()=>{
+    color = 'white';
+});
+eraser.addEventListener('dragover',()=>{
+    color = 'white';
+});
+
+//Color Picker
+controls.addEventListener("click", (event) => {
+    const button = event.target;
+    color = button.value;
+});
 
 newGrid.addEventListener('click',userInput);
 
