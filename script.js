@@ -44,6 +44,11 @@ controls.addEventListener("click", (event) => {
     color = button.value;
 });
 
+clearCanvas.addEventListener('click',()=>{
+    let childNodes = gridContainer.childNodes;
+    childNodes.forEach((childNode)=>{childNode.style.backgroundColor = 'white'})
+});
+
 newGrid.addEventListener('click',userInput);
 
 function theGrid(grid) {
