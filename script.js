@@ -67,6 +67,7 @@ function generateGrid(grid) {
         boxes.style.height = `${480/grid}px`;
         boxes.style.borderBottom = `0.5px solid black`;
         boxes.style.borderRight = `0.5px solid black`;
+        boxes.setAttribute('draggable',true)
         boxes.addEventListener('click',changeBg);
         boxes.addEventListener('dragover',changeBg);
         gridContainer.append(boxes);
