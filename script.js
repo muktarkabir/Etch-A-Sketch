@@ -7,7 +7,6 @@ const controls = document.getElementById("colour-controls");
 
 let grid = 16;
 let color = "black";
-let isDragging = false;
 
 function changeBg(e) {
     const element = e.target;
