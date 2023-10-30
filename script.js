@@ -5,7 +5,6 @@ const eraser = document.querySelector('.eraser');
 const controls = document.getElementById("colour-controls");
 // const rainbowButton = document.querySelector('.rainbowButton > button');
 
-let grid = 16;
 let color = "black";
 
 function changeBg(e) {
@@ -66,12 +65,13 @@ function generateGrid(grid) {
         boxes.style.height = `${480/grid}px`;
         boxes.style.borderBottom = `0.5px solid black`;
         boxes.style.borderRight = `0.5px solid black`;
-        boxes.setAttribute('draggable',true)
+        boxes.setAttribute('draggable',true);
         boxes.addEventListener('click',changeBg);
         boxes.addEventListener('dragover',changeBg);
         gridContainer.append(boxes);
     }
 }
-generateGrid(grid);
+generateGrid(16);
+
 
 
