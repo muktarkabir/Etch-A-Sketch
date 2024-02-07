@@ -5,6 +5,10 @@
 	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
+body {
+	background-color: rgb(146, 230, 230);
+}
+
 .heading {
 	display: flex;
 	justify-content: center;
@@ -18,18 +22,19 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 #controls-container {
 	margin-top: 60px;
 	margin-left: 50px;
 	width: 372px;
-	height: 530px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	border: 6px solid black;
 	border-radius: 30px;
+	background-color: white;
 }
 h2 {
 	display: flex;
@@ -113,8 +118,9 @@ h4 {
 }
 
 #grid-container {
-	width: 481px;
+	min-width: 481px;
 	height: 480px;
+	flex-basis: 481px;
 	display: flex;
 	border: 0.5px solid black;
 	border-right: none;
@@ -124,4 +130,17 @@ h4 {
 	background-color: white;
 	flex-wrap: wrap;
 	box-shadow: 8px 8px black;
+}
+.art-stuff #grid-container {
+	order: 3;
+}
+@media screen and (max-width: 582px) {
+	.art-stuff > #controls-container {
+		order: 20;
+	}
+}
+@media screen and (max-width: 800px) {
+	.art-stuff > #controls-container {
+		order: 20;
+	}
 }
