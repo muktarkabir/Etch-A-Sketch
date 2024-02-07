@@ -68,6 +68,14 @@ function generateGrid(grid) {
 		boxes.setAttribute("draggable", true);
 		boxes.addEventListener("click", changeBg);
 		boxes.addEventListener("dragover", changeBg);
+		boxes.addEventListener("touchmove", (e) => {
+			e.PreventDefault();
+			changeBg();
+		});
+		boxes.addEventListener("touchstart", (e) => {
+			e.PreventDefault();
+			changeBg();
+		});
 		gridContainer.append(boxes);
 	}
 }
