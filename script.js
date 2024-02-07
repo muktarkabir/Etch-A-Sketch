@@ -56,6 +56,10 @@ clearCanvas.addEventListener("click", () => {
 
 newGrid.addEventListener("click", generateNewGrid);
 
+gridContainer.addEventListener("touchstart", (e) => {
+	e.preventDefault();
+});
+
 function generateGrid(grid) {
 	for (let i = 0; i < grid ** 2; i++) {
 		const boxes = document.createElement("div");
