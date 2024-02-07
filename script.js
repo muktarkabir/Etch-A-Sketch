@@ -56,7 +56,7 @@ clearCanvas.addEventListener("click", () => {
 
 newGrid.addEventListener("click", generateNewGrid);
 
-gridContainer.addEventListener("touchstart", (e) => {
+gridContainer.addEventListener("touchmove", (e) => {
 	e.preventDefault();
 });
 
@@ -72,14 +72,7 @@ function generateGrid(grid) {
 		boxes.setAttribute("draggable", true);
 		boxes.addEventListener("click", changeBg);
 		boxes.addEventListener("dragover", changeBg);
-		boxes.addEventListener("touchmove", (e) => {
-			e.PreventDefault();
-			changeBg();
-		});
-		boxes.addEventListener("touchstart", (e) => {
-			e.PreventDefault();
-			changeBg();
-		});
+		boxes.addEventListener("touchmove", changeBg);
 		gridContainer.append(boxes);
 	}
 }
