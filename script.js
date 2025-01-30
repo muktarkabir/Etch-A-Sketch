@@ -72,18 +72,16 @@ gridContainer.addEventListener("mousedown",(e)=>{
 	tracing = true;
 });
 
-
-gridContainer.addEventListener('mouseover',(e)=>{
-
-	if (e.target.classList.contains('box') && tracing) {
-		changeBg(e);
-	}
-	
-});
-
 gridContainer.addEventListener('mouseup',()=>{
 	tracing = false;
 });
+
+gridContainer.addEventListener('mouseover',(e)=>{
+	if (e.target.classList.contains('box') && tracing) {
+		changeBg(e);
+	}	
+});
+
 
 function generateGrid(grid) {
 	for (let i = 0; i < grid ** 2; i++) {
