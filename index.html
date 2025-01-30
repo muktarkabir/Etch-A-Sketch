@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="script.js" defer></script>
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="toggle_switch.css">
 		<title>Etch-A-Sketch</title>
 	</head>
 	<body>
@@ -18,6 +19,18 @@
 					<button class="eraser">Eraser</button>
 				</div>
 				<h4>Colors</h4>
+				<div class="color-magic">
+					<div class="rainbow-toggle"><p>Rainbow Mode:</p>
+						<label class="switch">
+							<input type="checkbox" class="rainbowButton">
+							<span class="slider round"></span>
+						  </label></div>
+
+						  <label for="color" class="color"><p>Pick a color:</p>
+							<input type="color" name="color" id="color-picker"></label>  
+				</div>
+				
+				
 				<div id="colour-controls">
 					<button value="red"></button>
 					<button value="green"></button>
@@ -29,7 +42,7 @@
 					<button value="gold"></button>
 					<button value="teal"></button>
 				</div>
-				<div class="rainbowButton"><button>Random Color</button></div>
+				
 			</div>
 			<div id="grid-container"></div>
 		</div>
