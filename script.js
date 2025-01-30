@@ -5,10 +5,12 @@ const eraser = document.querySelector(".eraser");
 const controls = document.getElementById("colour-controls");
 const rainbowButton = document.querySelector('.rainbowButton');
 const colorPicker = document.querySelector('#color-picker');
+const gridToggleButton = document.querySelector('.gridlines-toggle');
 
 let color = "black";
 let rainbowMode = rainbowButton.checked;
 let tracing = false;
+let gridLines = true;
 
 rainbowButton.addEventListener('change',()=>{
 	rainbowMode = rainbowButton.checked;
@@ -52,6 +54,7 @@ controls.addEventListener("click", (event) => {
 
 //Eraser functionality
 eraser.addEventListener("click", () => {
+	rainbowButton.checked = false;
 	color = "white";
 });
 
@@ -60,6 +63,13 @@ clearCanvas.addEventListener("click", () => {
 	childNodes.forEach((childNode) => {
 		childNode.style.backgroundColor = "white";
 	});
+});
+
+gridToggleButton.addEventListener('click',()=>{
+	gridContainer.childNodes.forEach((child) => {
+		gridLines ?  removeGridlines(child) : addGridLines(child);
+	});      
+	gridLines = !gridLines;
 });
 
 newGrid.addEventListener("click", generateNewGrid);
@@ -82,16 +92,24 @@ gridContainer.addEventListener('mouseover',(e)=>{
 	}	
 });
 
+function addGridLines(elem){
+	elem.style.borderBottom = `0.5px solid black`;
+	elem.style.borderRight = `0.5px solid black`;
+}
+
+function removeGridlines(elem) {
+	elem.style.borderBottom = `0`;
+	elem.style.borderRight = `0`;
+}
+
 
 function generateGrid(grid) {
 	for (let i = 0; i < grid ** 2; i++) {
 		const boxes = document.createElement("div");
 		boxes.classList.add(`box`);
-		boxes.classList.add(`${i + 1}`);
 		boxes.style.width = `${480 / grid}px`;
 		boxes.style.height = `${480 / grid}px`;
-		boxes.style.borderBottom = `0.5px solid black`;
-		boxes.style.borderRight = `0.5px solid black`;
+		addGridLines(boxes);
 		gridContainer.append(boxes);
 	}
 }
