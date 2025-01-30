@@ -38,6 +38,8 @@ function generateNewGrid(userInput) {
 	if (freshGrid >= 1 && freshGrid <= 100) {
 		gridContainer.innerHTML = '';
 		generateGrid(freshGrid);
+		gridContainer.childNodes.forEach((child) => {removeGridlines(child);
+		});
 	} else if (freshGrid < 1 || freshGrid > 100) {
 		alert("Invalid Input.");
 		return generateNewGrid();
@@ -98,8 +100,7 @@ function addGridLines(elem){
 }
 
 function removeGridlines(elem) {
-	elem.style.borderBottom = `0`;
-	elem.style.borderRight = `0`;
+	elem.style.border = 'none';
 }
 
 
