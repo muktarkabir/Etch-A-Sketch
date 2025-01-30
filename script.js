@@ -3,22 +3,25 @@ const newGrid = document.querySelector(".new-grid");
 const clearCanvas = document.querySelector(".clear");
 const eraser = document.querySelector(".eraser");
 const controls = document.getElementById("colour-controls");
-// const rainbowButton = document.querySelector('.rainbowButton > button');
+const rainbowButton = document.querySelector('.rainbowButton > button');
 
 let color = "black";
+let rainbowMode = false;
+
+rainbowButton.addEventListener('click',()=>{
+	rainbowMode ? rainbowMode = false : rainbowMode = true;
+});
 
 function changeBg(e) {
 	const element = e.target;
-	element.style.backgroundColor = color;
+	rainbowMode ? element.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})` 
+	:element.style.backgroundColor = color;
 }
 
-// function random(number) {
-//     return Math.floor(Math.random() * number + 1);
-//   }
+function random(number) {
+    return Math.floor(Math.random() * number + 1);
+  }
 
-// function rainbowMode(e) {
-//     e.target.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
-// }
 
 function generateNewGrid(userInput) {
 	userInput = prompt("Enter a number from 1 to 100:");
@@ -31,18 +34,19 @@ function generateNewGrid(userInput) {
 		return generateNewGrid();
 	}
 
-	
 }
 
 //Color Picker
 controls.addEventListener("click", (event) => {
 	const button = event.target;
 	color = button.value;
+	rainbowMode = false;
 });
 
 //Eraser functionality
 eraser.addEventListener("click", () => {
 	color = "white";
+	rainbowMode = false;
 });
 
 clearCanvas.addEventListener("click", () => {
