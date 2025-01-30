@@ -24,16 +24,14 @@ function generateNewGrid(userInput) {
 	userInput = prompt("Enter a number from 1 to 100:");
 	const freshGrid = parseInt(userInput);
 	if (freshGrid >= 1 && freshGrid <= 100) {
-		grid = freshGrid;
+		gridContainer.innerHTML = '';
+		generateGrid(freshGrid);
 	} else if (freshGrid < 1 || freshGrid > 100) {
 		alert("Invalid Input.");
 		return generateNewGrid();
 	}
 
-	while (gridContainer.firstChild) {
-		gridContainer.removeChild(gridContainer.firstChild);
-	}
-	generateGrid(grid);
+	
 }
 
 //Color Picker
@@ -60,6 +58,12 @@ gridContainer.addEventListener("touchmove", (e) => {
 	e.preventDefault();
 });
 
+gridContainer.addEventListener("click",(e)=>{
+	if (e.target.classList.contains('box')) {
+		changeBg(e);
+	}
+});
+
 function generateGrid(grid) {
 	for (let i = 0; i < grid ** 2; i++) {
 		const boxes = document.createElement("div");
@@ -70,7 +74,6 @@ function generateGrid(grid) {
 		boxes.style.borderBottom = `0.5px solid black`;
 		boxes.style.borderRight = `0.5px solid black`;
 		boxes.setAttribute("draggable", true);
-		boxes.addEventListener("click", changeBg);
 		boxes.addEventListener("dragover", changeBg);
 		boxes.addEventListener("touchmove", changeBg);
 		gridContainer.append(boxes);
