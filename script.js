@@ -8,6 +8,7 @@ const colorPicker = document.querySelector('#color-picker');
 
 let color = "black";
 let rainbowMode = rainbowButton.checked;
+let tracing = false;
 
 rainbowButton.addEventListener('change',()=>{
 	rainbowMode = rainbowButton.checked;
@@ -15,6 +16,7 @@ rainbowButton.addEventListener('change',()=>{
 
 colorPicker.addEventListener('change',(e)=>{
 	color = e.target.value;
+	rainbowButton.checked = false;
 });
 
 function changeBg(e) {
@@ -41,7 +43,7 @@ function generateNewGrid(userInput) {
 
 }
 
-//Color Picker
+//Color buttons
 controls.addEventListener("click", (event) => {
 	const button = event.target;
 	color = button.value;
@@ -62,14 +64,25 @@ clearCanvas.addEventListener("click", () => {
 
 newGrid.addEventListener("click", generateNewGrid);
 
-gridContainer.addEventListener("touchmove", (e) => {
-	e.preventDefault();
-});
 
-gridContainer.addEventListener("click",(e)=>{
+gridContainer.addEventListener("mousedown",(e)=>{
 	if (e.target.classList.contains('box')) {
 		changeBg(e);
 	}
+	tracing = true;
+});
+
+
+gridContainer.addEventListener('mouseover',(e)=>{
+
+	if (e.target.classList.contains('box') && tracing) {
+		changeBg(e);
+	}
+	
+});
+
+gridContainer.addEventListener('mouseup',()=>{
+	tracing = false;
 });
 
 function generateGrid(grid) {
@@ -81,9 +94,6 @@ function generateGrid(grid) {
 		boxes.style.height = `${480 / grid}px`;
 		boxes.style.borderBottom = `0.5px solid black`;
 		boxes.style.borderRight = `0.5px solid black`;
-		boxes.setAttribute("draggable", true);
-		boxes.addEventListener("dragover", changeBg);
-		boxes.addEventListener("touchmove", changeBg);
 		gridContainer.append(boxes);
 	}
 }
