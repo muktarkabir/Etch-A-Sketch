@@ -3,18 +3,23 @@ const newGrid = document.querySelector(".new-grid");
 const clearCanvas = document.querySelector(".clear");
 const eraser = document.querySelector(".eraser");
 const controls = document.getElementById("colour-controls");
-const rainbowButton = document.querySelector('.rainbowButton > button');
+const rainbowButton = document.querySelector('.rainbowButton');
+const colorPicker = document.querySelector('#color-picker');
 
 let color = "black";
-let rainbowMode = false;
+let rainbowMode = rainbowButton.checked;
 
-rainbowButton.addEventListener('click',()=>{
-	rainbowMode ? rainbowMode = false : rainbowMode = true;
+rainbowButton.addEventListener('change',()=>{
+	rainbowMode = rainbowButton.checked;
+});
+
+colorPicker.addEventListener('change',(e)=>{
+	color = e.target.value;
 });
 
 function changeBg(e) {
 	const element = e.target;
-	rainbowMode ? element.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})` 
+	rainbowButton.checked ? element.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})` 
 	:element.style.backgroundColor = color;
 }
 
@@ -40,13 +45,12 @@ function generateNewGrid(userInput) {
 controls.addEventListener("click", (event) => {
 	const button = event.target;
 	color = button.value;
-	rainbowMode = false;
+	rainbowButton.checked = false;
 });
 
 //Eraser functionality
 eraser.addEventListener("click", () => {
 	color = "white";
-	rainbowMode = false;
 });
 
 clearCanvas.addEventListener("click", () => {
