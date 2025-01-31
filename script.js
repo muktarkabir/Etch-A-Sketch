@@ -38,9 +38,9 @@ function generateNewGrid(userInput) {
 	if (freshGrid >= 1 && freshGrid <= 100) {
 		gridContainer.innerHTML = '';
 		generateGrid(freshGrid);
-		gridContainer.childNodes.forEach((child) => {removeGridlines(child);
-		});
-	} else if (freshGrid < 1 || freshGrid > 100) {
+		if (!gridLines)gridContainer.childNodes.forEach((child) => removeGridlines(child));
+		
+		} else if (freshGrid < 1 || freshGrid > 100) {
 		alert("Invalid Input.");
 		return generateNewGrid();
 	}
