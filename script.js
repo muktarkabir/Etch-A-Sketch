@@ -9,9 +9,9 @@ const gridToggleButton = document.querySelector('.gridlines-toggle');
 const shadingToggleButton = document.querySelector('.shading-toggle');
 
 let color = "black";
-let rainbowMode = rainbowButton.checked;
+let rainbowMode = false;
 let shadingMode = false;
-let tracing = false;
+let drawing = false;
 let gridLines = true;
 
 rainbowButton.addEventListener('change',()=>{
@@ -19,6 +19,15 @@ rainbowButton.addEventListener('change',()=>{
 });
 shadingToggleButton.addEventListener('click',()=>{
 	shadingMode = !shadingMode;
+	if (shadingMode) {
+	    removeGridlines();
+		gridLines = false;	
+		makeCellsTransparent();	
+	} else {	
+		makeCellsOpaque();
+		gridLines = true;
+		addGridLines();
+	}
 });
 
 colorPicker.addEventListener('change',(e)=>{
@@ -30,6 +39,7 @@ function changeBackgroundColor(e) {
 	const element = e.target;
 	rainbowButton.checked ? element.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})` 
 	:element.style.backgroundColor = color;
+	if (shadingMode) increaseOpacityAmount(element);
 }
 
 function random(number) {
@@ -43,8 +53,7 @@ function generateNewGrid(userInput) {
 	if (freshGrid >= 1 && freshGrid <= 100) {
 		gridContainer.innerHTML = '';
 		generateGrid(freshGrid);
-		if (!gridLines)gridContainer.childNodes.forEach((child) => removeGridlines(child));
-		
+		if (!gridLines) removeGridlines();
 		} else if (freshGrid < 1 || freshGrid > 100) {
 		alert("Invalid Input.");
 		return generateNewGrid();
@@ -70,12 +79,15 @@ clearCanvas.addEventListener("click", () => {
 	childNodes.forEach((childNode) => {
 		childNode.style.backgroundColor = "white";
 	});
+	if (shadingMode) {
+		makeCellsTransparent();	
+	} else{
+		return;
+	}
 });
 
 gridToggleButton.addEventListener('click',()=>{
-	gridContainer.childNodes.forEach((child) => {
-		gridLines ?  removeGridlines(child) : addGridLines(child);
-	});      
+	gridLines ?  removeGridlines() : addGridLines();     
 	gridLines = !gridLines;
 });
 
@@ -86,46 +98,57 @@ gridContainer.addEventListener("mousedown",(e)=>{
 	if (e.target.classList.contains('box')) {
 		changeBackgroundColor(e);
 	}
-	tracing = true;
+	drawing = true;
 });
 
 gridContainer.addEventListener('mouseup',()=>{
-	tracing = false;
+	drawing = false;
 });
 
 gridContainer.addEventListener('mouseover',(e)=>{
-	if (e.target.classList.contains('box') && tracing) {
+	if (e.target.classList.contains('box') && drawing) {
 		changeBackgroundColor(e);
 	}	
 });
 
-function addGridLines(elem){
-	elem.style.borderBottom = `0.5px solid black`;
-	elem.style.borderRight = `0.5px solid black`;
+function addGridLines(){
+	gridContainer.childNodes.forEach((childNode) =>{
+		childNode.style.borderBottom = `0.5px solid black`;
+		childNode.style.borderRight = `0.5px solid black`;
+	});
 }
 
-function removeGridlines(elem) {
-	elem.style.border = 'none';
+function removeGridlines() {
+	gridContainer.childNodes.forEach((childNode) =>{
+		childNode.style.border = `none`;
+	});
 }
 
 function getOpacityAmount(element){
-    return parseFloat(element.target.style.opacity);
+    return parseFloat(element.style.opacity);
 
 }
 
 function increaseOpacityAmount(element) {
-	// Firstly, set opacity of all boxes to 0, then toggle a flag   
    //calculate the element's opacity 
    //if the opacity level is less than 1.0
    // increase the element's opacity by 0.1
-   if (getOpacityLevel(element) < 1.0) {
-	   element.target.style.opacity = parseFloat(element.target.style.opacity) + 0.1;
+   if (getOpacityAmount(element) < 1.0) {
+	   element.style.opacity = parseFloat(element.style.opacity) + 0.1;
    } else {
 	   return;
    }
-   //if the element's opacity is equals to 1.0 
+   //if the element's opacity is not less than 1.0 
    // dont do anything.
    
+   }
+
+   function makeCellsTransparent() {
+	gridContainer.childNodes.forEach((child) => child.style.opacity = 0.0);
+   }
+
+   function makeCellsOpaque() {
+	gridContainer.childNodes.forEach((child) => child.style.opacity = 1.0);
    }
 
 
