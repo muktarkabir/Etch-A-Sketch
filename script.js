@@ -6,14 +6,19 @@ const controls = document.getElementById("colour-controls");
 const rainbowButton = document.querySelector('.rainbowButton');
 const colorPicker = document.querySelector('#color-picker');
 const gridToggleButton = document.querySelector('.gridlines-toggle');
+const shadingToggleButton = document.querySelector('.shading-toggle');
 
 let color = "black";
 let rainbowMode = rainbowButton.checked;
+let shadingMode = false;
 let tracing = false;
 let gridLines = true;
 
 rainbowButton.addEventListener('change',()=>{
 	rainbowMode = rainbowButton.checked;
+});
+shadingToggleButton.addEventListener('click',()=>{
+	shadingMode = !shadingMode;
 });
 
 colorPicker.addEventListener('change',(e)=>{
