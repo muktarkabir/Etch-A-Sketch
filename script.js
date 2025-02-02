@@ -103,10 +103,25 @@ function removeGridlines(elem) {
 	elem.style.border = 'none';
 }
 
-function getOpacityLevel(element){
+function getOpacityAmount(element){
     return parseFloat(element.target.style.opacity);
 
 }
+
+function increaseOpacityAmount(element) {
+	// Firstly, set opacity of all boxes to 0, then toggle a flag   
+   //calculate the element's opacity 
+   //if the opacity level is less than 1.0
+   // increase the element's opacity by 0.1
+   if (getOpacityLevel(element) < 1.0) {
+	   element.target.style.opacity = parseFloat(element.target.style.opacity) + 0.1;
+   } else {
+	   return;
+   }
+   //if the element's opacity is equals to 1.0 
+   // dont do anything.
+   
+   }
 
 
 function generateGrid(grid) {
