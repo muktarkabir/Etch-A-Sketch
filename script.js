@@ -103,6 +103,11 @@ function removeGridlines(elem) {
 	elem.style.border = 'none';
 }
 
+function getOpacityLevel(element){
+    return parseFloat(element.target.style.opacity);
+
+}
+
 
 function generateGrid(grid) {
 	for (let i = 0; i < grid ** 2; i++) {
