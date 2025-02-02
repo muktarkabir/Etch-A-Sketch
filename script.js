@@ -115,6 +115,7 @@ function generateGrid(grid) {
 		boxes.classList.add(`box`);
 		boxes.style.width = `${480 / grid}px`;
 		boxes.style.height = `${480 / grid}px`;
+		boxes.setAttribute('draggable', 'false');
 		addGridLines(boxes);
 		gridContainer.append(boxes);
 	}
