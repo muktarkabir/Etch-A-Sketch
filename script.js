@@ -21,7 +21,7 @@ colorPicker.addEventListener('change',(e)=>{
 	rainbowButton.checked = false;
 });
 
-function changeBg(e) {
+function changeBackgroundColor(e) {
 	const element = e.target;
 	rainbowButton.checked ? element.style.backgroundColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})` 
 	:element.style.backgroundColor = color;
@@ -79,7 +79,7 @@ newGrid.addEventListener("click", generateNewGrid);
 
 gridContainer.addEventListener("mousedown",(e)=>{
 	if (e.target.classList.contains('box')) {
-		changeBg(e);
+		changeBackgroundColor(e);
 	}
 	tracing = true;
 });
@@ -90,7 +90,7 @@ gridContainer.addEventListener('mouseup',()=>{
 
 gridContainer.addEventListener('mouseover',(e)=>{
 	if (e.target.classList.contains('box') && tracing) {
-		changeBg(e);
+		changeBackgroundColor(e);
 	}	
 });
 
